@@ -1,0 +1,28 @@
+<h2>{{ position.symbol }} Details</h2>
+<ul class="positions">
+	<li *ngFor="let position of positions"
+		[class.selected] = "position === selectedPosition"
+		[class.hidden] = "selectedPosition && position !== selectedPosition"
+		(click)="toggleSelect(position)">
+		<span class="badge">{{position.symbol}}</span>
+		{{position.shares}}: {{position.purchaseDate | date:'shortDate'}}
+	</li>
+</ul>
+<div *ngIf="selectedPosition">
+	<div><span>id: </span>{{selectedPosition.id}}</div>
+	<div>
+		<label>
+			symbol: <input [(ngModel)]="selectedPosition.symbol" placeholder="symbol">
+		</label>
+	</div>
+	<div>
+		<label>
+			purchase ate: <input [(ngModel)]="selectedPosition.purchaseDate" placeholder="purchaseDate">
+		</label>
+	</div>
+	<div>
+		<label>
+			shares: <input [(ngModel)]="selectedPosition.shares" placeholder="shares">
+		</label>
+	</div>
+</div>
